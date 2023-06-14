@@ -1,0 +1,45 @@
+{% extends 'UserPanel/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+{% include "UserPanel/navbar.html" %}
+
+<div class="container-fluid cf11">
+  <div class="row d-flex justify-content-center">
+    <div class="col-sm-6 d-flex justify-content-center mt-5">
+      <img src="static/images/NTU1.png" />
+    </div>
+    <div class="col-sm-12 mt-5">
+      <form class="d-flex justify-content-center">
+        <ul class="navbar-nav ">
+          <a class="nav-link" role="button"  aria-expanded="false">
+            <b>Welcome, {{cms_user.fullName}}</b>
+          </a>
+          <a class="nav-link d-flex justify-content-center" role="button" href="/user-logout" aria-expanded="false">
+            <button type="button" class="btn btn-danger">Logout</button>
+          </a>
+         </ul>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% comment %} {% for group, menus in group_data %}
+<h3>{{ group.groupName }}</h3>
+<ol>
+  {% for menu in menus %}
+  <li>{{ menu.menuName }}</li>
+  {% endfor %}
+</ol>
+{% endfor %} {% endcomment %}
+
+{% endblock %}
+
+{% block extra_needed_js %}
+
+
+{% endblock extra_needed_js %}

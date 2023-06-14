@@ -1,0 +1,44 @@
+
+{% extends 'UserPanel/base.html' %}
+{% comment %} {% load static %} {% endcomment %}
+{% block page_title %}User Panel{% endblock page_title %}
+ 
+{% block content %}
+<div class="container">
+    <div class="p-4 m-4 form">
+        <div class="col-lg-4 mx-auto">
+            <h3 class="text-center mt-4 mb-4 alert alert-light border rounded">User Panel</h3>
+            <form action="/user-panel" method="POST">
+                {% csrf_token %}
+                {% if error_message %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>{{error_message}}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endif%}
+                    <!--Email-->
+                <div class="form-group mt-2">
+                <input required type="email" name="email" id="" value="{{values.email}}"
+                class="form-control" placeholder="Email Address">
+                </div> 
+                <!--Password-->
+                <div class="form-group mt-2">
+                <input type="password" name="password" id="" 
+                class="form-control" placeholder="Password">
+                </div> 
+                <div class="d-grid gap-2 mt-3">
+                    <button class="btn btn-danger" type="submit">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block extra_needed_js %}
+
+
+{% endblock extra_needed_js %}
+

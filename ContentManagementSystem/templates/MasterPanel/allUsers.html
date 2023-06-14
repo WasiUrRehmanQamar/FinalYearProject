@@ -1,0 +1,62 @@
+{% extends 'MasterPanel/index.html' %}
+
+{% block title%} All Users {%endblock%}
+
+{% block content%}
+<div id="layoutSidenav_content">
+   <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4 text-center" style="color: #7D61B5;"><b>All Users</b></h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active"></li>
+            </ol>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    All Users
+                </div>
+                
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                            {% comment %} <th scope="col">CNIC</th> {% endcomment %}
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Password</th>
+                            <th scope="col">Created By</th>
+                            <th scope="col">Modified By</th>
+                            <th scope="col">CreatedAt</th>
+                                
+                        
+                            
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user  in allUsers %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{user.fullName}}</td>
+                                    <td>{{user.email}}</td>
+                                    <td>{{user.password}}</td>
+                                    <td>{{user.createdBy}}</td>
+                                    <td>{{user.modifiedBy}}</td>
+                                    <td>{{user.createdat|date:"Y-m-d"}}</td>
+                                   
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    
+</div>
+
+
+
+
+{%endblock%}

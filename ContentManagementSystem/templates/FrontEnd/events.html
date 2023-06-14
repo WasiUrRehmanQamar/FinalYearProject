@@ -1,0 +1,39 @@
+{% extends 'FrontEnd/templateFE/base.html' %}
+{% load static %}
+{% block page_title %}Evenets{% endblock page_title %}
+{% block content %}
+
+
+
+{% include 'FrontEnd/templateFE/topbar.html' %}
+{% include 'FrontEnd/templateFE/navbar.html' %}
+
+<div class="container mt-3 mb-5">
+    <div class="text-center mb-5">
+        <h3>Events</h3>
+        {% comment %} <hr class="w-50 mx-auto"> {% endcomment %}
+        <hr class="w-30 mx-auto">
+    </div>
+    {% if events %}
+    <div class="row">
+        {% for item in events %}
+            <a href="{{item.Image.url}}"><img src="{{item.Image.url}}" class="card-img-top mb-3" alt="News Picture" width="400px" height="400px"></a>
+            {% comment %} <div>{{ item.Image}}</div> {% endcomment %}
+            <hr>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>No Events available.</p>
+    {% endif %}
+        
+
+
+</div>
+
+    {% include 'FrontEnd/templateFE/footer.html' %}
+{% endblock %}
+
+{% block extra_needed_js %}
+
+
+{% endblock extra_needed_js %}

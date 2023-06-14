@@ -1,0 +1,45 @@
+{% extends 'FrontEnd/templateFE/base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+
+
+    {% include 'FrontEnd/templateFE/topbar.html' %}
+    {% include 'FrontEnd/templateFE/navbar.html' %}
+
+     <!-- Carousel Start -->
+    <div class="container-fluid p-0 pb-5 mb-5">
+        <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#header-carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#header-carousel" data-slide-to="1"></li>
+                <li data-target="#header-carousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active" style="min-height: 300px;">
+                    <img class="position-relative w-100" src="{% static 'templateFE/img/carousel-1.jpg'%}" style="min-height: 300px; object-fit: cover;">
+                </div>
+                <div class="carousel-item" style="min-height: 300px;">
+                    <img class="position-relative w-100" src="{% static 'templateFE/img/carousel-2.jpg'%}" style="min-height: 300px; object-fit: cover;">
+                </div>
+                <div class="carousel-item" style="min-height: 300px;">
+                    <img class="position-relative w-100" src="{% static 'templateFE/img/carousel-3.jpg'%}" style="min-height: 300px; object-fit: cover;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Carousel End -->
+
+    {% include 'FrontEnd/templateFE/aboutus.html' %}
+     {% include 'FrontEnd/templateFE/footer.html' %}
+   
+
+{% endblock %}
+
+{% block extra_needed_js %}
+<script>
+// This script is not required anymore
+</script>
+{% endblock extra_needed_js %}

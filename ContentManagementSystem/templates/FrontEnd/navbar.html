@@ -1,0 +1,75 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/"><img class="rounded-circle" src="{% static 'images/download.jpg' %}" width="50" height="50"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav flex-wrap me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="departments" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Departments
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="departments">
+            {% for parent_department in context.departments %}
+              <li class="dropdown-submenu">
+                <a class="dropdown-item dropdown-toggle" href="#">{{ parent_department.departmentName }}</a>
+                <ul class="dropdown-menu">
+                  {% for child_department in parent_department.childdepartment_set.all %}
+                    <li><a class="dropdown-item" href="#">{{ child_department.departmentName }}</a></li>
+                  {% endfor %}
+                </ul>
+              </li>
+            {% endfor %}
+          </ul>
+        </li>
+        
+        <!-- rest of the code -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="campusLife" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Campus Life
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="campusLife">
+            <li><a class="dropdown-item" href="/faculty">Faculty Profiles</a></li>
+            <li><a class="dropdown-item" href="/jobs">Jobs</a></li>
+            <li><a class="dropdown-item" href="/student-notice-board">Notice Board</a></li>
+            <li><a class="dropdown-item" href="/news">News Updates</a></li>
+            <li><a class="dropdown-item" href="/tender">Tenders</a></li>
+            <li><a class="dropdown-item" href="/events">Events</a></li>
+           
+          </ul>
+        </li>
+        {% for group in context.groups %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown{{ group.id }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ group.groupName }}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown{{ group.id }}">
+            {% for group_menu in group.groupmenu_set.all %}
+            <li><a class="dropdown-item" href="{% url 'menu_detail' menu_id=group_menu.menuID.id %}">{{ group_menu.menuID.menuName }}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Enable dropdown-submenu functionality
+  $(document).ready(function () {
+    $('.dropdown-submenu a.dropdown-toggle').on("click", function (e) {
+      if (!$(this).next().hasClass('show')) {
+        $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+      }
+      var $subMenu = $(this).next(".dropdown-menu");
+      $subMenu.toggleClass('show');
+      $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function (e) {
+        $('.dropdown-submenu .show').removeClass("show");
+      });
+      return false;
+    });
+  });
+</script>

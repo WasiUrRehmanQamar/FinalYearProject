@@ -1,0 +1,48 @@
+.navbar-nav.flex-wrap {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+
+.navbar-nav.flex-wrap .dropdown {
+  position: static;
+  display: inline-block;
+}
+
+.navbar-nav.flex-wrap .dropdown-menu {
+  left: auto !important;
+  transform-origin: top left;
+}
+
+.navbar-nav.flex-wrap .nav-link {
+  white-space: nowrap;
+}
+
+body {
+  background-image: url("../images/StudentWallpaper.jpg");
+  background-repeat: no-repeat;
+  background-size: fill;
+}
+
+div.col-lg-4.mx-auto {
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with transparent opacity */
+  padding: 15px; /* Padding of 15 pixels */
+}
+
+div.cf1 {
+  background-color: white !important;
+}
+
+div.cf1 {
+  background-color: white !important;
+}
+
+div.container.mt-3.mb-5 {
+  background-color: white !important;
+}
+
+div.cf11 {
+  background-color: white !important;
+  height: 100vh;
+}

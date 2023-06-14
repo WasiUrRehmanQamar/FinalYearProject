@@ -1,0 +1,57 @@
+{% extends 'MasterPanel/index.html' %}
+
+{% block title%} Menus Assigned to Groups {%endblock%}
+
+{% block content%}
+<div id="layoutSidenav_content">
+   <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4 text-center" style="color: #7D61B5;"><b>Menus Assigned to Groups</b></h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active"></li>
+            </ol>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Menus Assigned to Groups
+                </div>
+                
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                            {% comment %} <th scope="col">CNIC</th> {% endcomment %}
+                            <th scope="col">#</th>
+                            <th scope="col">Group Name</th>
+                             <th scope="col">Menus</th>
+                                
+                           
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for group in group_data %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ group.group.groupName }}</td>
+                                    <td>
+                                    {% for menu in group.menus %}
+                                    <li>{{ menu.menuID__menuName }}</li>
+                                    {% endfor %}
+                                    </td>
+                                    
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    
+</div>
+
+
+
+
+{%endblock%}

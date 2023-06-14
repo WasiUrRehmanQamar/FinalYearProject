@@ -1,0 +1,58 @@
+{% extends 'MasterPanel/index.html' %}
+
+{% block title%} Groups Assigned to Users {%endblock%}
+
+{% block content%}
+<div id="layoutSidenav_content">
+   <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4 text-center" style="color: #7D61B5;"><b>Groups Assigned to Users</b></h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active"></li>
+            </ol>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Groups Assigned to Users
+                </div>
+                
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                            {% comment %} <th scope="col">CNIC</th> {% endcomment %}
+                            <th scope="col">#</th>
+                            <th scope="col">User Name</th>
+                             <th scope="col">User Groups</th>
+                                
+                            
+                            
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in users %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ user.fullName }}</td>
+                                    <td>
+                                    {% for user_group in user.usergroup_set.all %}
+                                    <li>{{ user_group.groupID.groupName }}</li>
+                                    {% endfor %}
+                                    </td>
+                                  
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    
+</div>
+
+
+
+
+{%endblock%}

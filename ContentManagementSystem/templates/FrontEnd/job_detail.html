@@ -1,0 +1,30 @@
+{% extends 'FrontEnd/templateFE/base.html' %}
+{% load static %}
+{% block page_title %}{{job.jobTitle}}{% endblock page_title %}
+{% block content %}
+
+{% load static %}
+
+
+{% include 'FrontEnd/templateFE/topbar.html' %}
+{% include 'FrontEnd/templateFE/navbar.html' %}
+
+<div class="container mt-3 mb-5">
+    <div class="text-center mb-5">
+        <h3>{{job.jobTitle}}</h3>
+        {% comment %} <hr class="w-50 mx-auto"> {% endcomment %}
+        <hr class="w-30 mx-auto">
+        <p class="text-center">Posted on : {{job.createdat|date:"Y-m-d"}} &nbsp;&nbsp;&nbsp;&nbsp; Expired on : {{job.expiration_date|date:"Y-m-d"}}</p>
+    </div>
+    <div>{{ job.jobDescription|safe }}</div>
+
+
+</div>
+
+    {% include 'FrontEnd/templateFE/footer.html' %}
+{% endblock %}
+
+{% block extra_needed_js %}
+
+
+{% endblock extra_needed_js %}

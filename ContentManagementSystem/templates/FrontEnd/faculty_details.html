@@ -1,0 +1,46 @@
+{% extends 'FrontEnd/templateFE/base.html' %}
+{% load static %}
+{% block page_title %}{{faculty.name}}{% endblock page_title %}
+{% block content %}
+
+{% load static %}
+
+
+{% include 'FrontEnd/templateFE/topbar.html' %}
+{% include 'FrontEnd/templateFE/navbar.html' %}
+
+<div class="container mt-5 mb-5">
+    <div class="row mt-3">
+        <div class="col-md-3">
+            <img src="{{faculty.Image.url}}" style="height: 300px;" alt="News Picture">
+            
+        </div>
+        <div class="col-md-9">
+            <h4>{{faculty.name}}</h4>
+            {% comment %} <strong>{{faculty.name}}</strong> {% endcomment %}
+            <strong class="text-danger">{{faculty.designation}}</strong>
+            {% comment %} <p>No. of Journal Publications: {{faculty.jouralPublications}}</p>
+            <p>No. of Conference Papers: {{faculty.conferencePublications}}</p> {% endcomment %}
+            <hr>
+            <p><b>Address : </b>{{faculty.address}} </p>
+            <p><b>Phone : </b>{{faculty.phone}}</p>
+            <p><b>Mobile : </b>{{faculty.mobile}}</p>
+            <p><b>Fax : </b>{{faculty.fax}}</p>
+            <p><b>Email : </b>{{faculty.email}}</p>
+            {% comment %} <img src="{{faculty.Image.url}}" style="height: 300px;" alt="News Picture"> {% endcomment %}
+        </div>
+    </div>
+    <hr>
+    <div class="col-md-12">{{ faculty.description|safe }}</div>
+
+
+</div>
+
+
+    {% include 'FrontEnd/templateFE/footer.html' %}
+{% endblock %}
+
+{% block extra_needed_js %}
+
+
+{% endblock extra_needed_js %}

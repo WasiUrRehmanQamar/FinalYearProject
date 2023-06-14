@@ -1,0 +1,63 @@
+{% extends 'MasterPanel/index.html' %}
+
+{% block title%} Create New Group {%endblock%}
+
+{% block content%}
+<div id="layoutSidenav_content">
+   <main>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 mt-5">
+                    <div class="card shadow-lg border-0 rounded-lg">
+                        <form  id="addGroupForm" action="/add-new-group" method="POST">
+                            {% csrf_token %}
+                            <div class="card-header"><h3 style="color: #7D61B5; font-weight: 600;" class="text-center font-weight-light my-4"><b>Create New Group</b></h3></div>
+                            {% if error_message %}
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    {{error_message}}
+                                </div>
+                            {% endif%}
+                            <div class="card-body">
+                                <div class="form-floating mb-3 col-md-12">
+                                    <input class="form-control" id="inputName" name="name" type="text" placeholder="Please Provide User Full Name" required/>
+                                    <label for="inputName">Group Name</label>
+                                </div>
+                                <p>Add Group in Campus: </p>
+                                    <div class="form-check mb-3 col-md-12">
+                                        <input class="form-check-input" type="checkbox" value="" name="Faisalabad"  id="Faisalabad">
+                                        <label class="form-check-label" for="Faisalabad">
+                                            Faisalabad Campus
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-3 col-md-12">
+                                        <input class="form-check-input" type="checkbox" value="" name="Karachi" id="Karachi">
+                                        <label class="form-check-label" for="Karachi">
+                                            Karachi Campus
+                                        </label>
+                                    </div>
+                                <button class="btn btn-primary form-control" type="submit">Create new Group</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    
+</div>
+
+<script>
+    document.getElementById('addGroupForm').addEventListener('submit', function (event) {
+        const faisaCheckbox = document.getElementById('Faisalabad');
+        const karachiCheckbox = document.getElementById('Karachi');
+
+        if (!faisaCheckbox.checked && !karachiCheckbox.checked) {
+            event.preventDefault(); // Prevent form submission
+            alert('Please select at least one campus.'); // Display an alert
+        }
+    });
+</script>
+
+
+{%endblock%}

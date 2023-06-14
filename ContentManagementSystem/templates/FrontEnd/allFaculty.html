@@ -1,0 +1,78 @@
+{% extends 'FrontEnd/templateFE/base.html' %}
+{% load static %}
+{% block page_title %}Faculty{% endblock page_title %}
+{% block content %}
+
+ {% block extra_css %}
+<style>
+    
+
+    .card-img-top {
+        object-fit: cover;
+        height: 150px; /* Adjust this value as needed */
+    }
+     a {
+        text-decoration: none;
+    }
+</style>
+
+{% endblock extra_css %} 
+{% include 'FrontEnd/templateFE/topbar.html' %}
+{% include 'FrontEnd/templateFE/navbar.html' %}
+
+<div class="container mt-3 mb-5">
+    <div class="text-center mb-5">
+        <h3>Faculty Profiles</h3>
+        {% comment %} <hr class="w-50 mx-auto"> {% endcomment %}
+        <hr class="w-30 mx-auto">
+    </div>
+    <div class="row">
+        {% for item in faculty %}
+            <div class="col-md-3 p-1">
+                <a href="{% url 'faculty_details' id=item.id %}">
+                    <div class="card">
+                        <img src="{{item.Image.url}}" style="height: 280px;" alt="News Picture">
+                        <div class="card-body">
+                            {% comment %} <strong class="text-danger">{{item.designation}}</strong> {% endcomment %}
+                            <p class="card-text text-center"><b>{{item.name}}</b></p>
+
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+        {% comment %} <div class="col-md-3">
+            <div class="card d-flex align-items-center justify-content-center">
+                <img src="{{item.titleImage.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    Posted on: {{item.createdat|date:"Y-m-d"}}
+                </div>
+            </div>
+        </div> {% endcomment %}
+        {% comment %} <div class="col-md-3 marginTop-0" style="padding-bottom: 10px;" align="center">
+			<div href="bsa-manuf.php" class="card text-gray shadow-v1">
+				<a href="bsa-manuf.php"><img class="card-img-top" src="{{item.titleImage.url}}" alt=""></a>
+			  <div class="card-body">
+				<a href="bsa-manuf.php" class="h6">
+				  BS Apparel Manufacturing
+				</a>
+			  </div>
+			</div>
+         </div> {% endcomment %}
+         {% comment %} <div class="row"> {% endcomment %}
+    
+
+
+</div>
+
+
+{% include 'FrontEnd/templateFE/footer.html' %}
+
+{% endblock %}
+
+{% block extra_needed_js %}
+
+
+{% endblock extra_needed_js %}

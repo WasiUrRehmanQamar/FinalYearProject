@@ -1,0 +1,27 @@
+{% extends 'FrontEnd/templateFE/base.html' %}
+{% load static %}
+{% block page_title %}{{department.departmentName}}{% endblock page_title %}
+{% block content %}
+
+{% load static %}
+
+
+{% include 'FrontEnd/templateFE/topbar.html' %}
+{% include 'FrontEnd/templateFE/navbar.html' %}
+
+<div class="container mt-5 mb-5">
+    <h4 class="text-center">{{department.departmentName}}</h4>
+    <hr>
+    <div class="col-md-12">{{ department.deptDescription|safe }}</div>
+
+
+</div>
+
+
+    {% include 'FrontEnd/templateFE/footer.html' %}
+{% endblock %}
+
+{% block extra_needed_js %}
+
+
+{% endblock extra_needed_js %}

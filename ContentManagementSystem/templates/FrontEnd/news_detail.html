@@ -1,0 +1,29 @@
+{% extends 'FrontEnd/templateFE/base.html' %}
+{% load static %}
+{% block page_title %}{{news.newsTitle}}{% endblock page_title %}
+{% block content %}
+
+{% load static %}
+
+{% include 'FrontEnd/templateFE/topbar.html' %}
+{% include 'FrontEnd/templateFE/navbar.html' %}
+
+<div class="container mt-3 mb-5">
+    <div class="text-center mb-5">
+        <h3>{{news.newsTitle}}</h3>
+        {% comment %} <hr class="w-50 mx-auto"> {% endcomment %}
+        <hr class="w-30 mx-auto">
+        <p class="text-center">Posted on : {{news.createdat|date:"Y-m-d"}} </p>
+    </div>
+    <div>{{ news.newsContent|safe }}</div>
+
+
+</div>
+
+    {% include 'FrontEnd/templateFE/footer.html' %}
+{% endblock %}
+
+{% block extra_needed_js %}
+
+
+{% endblock extra_needed_js %}

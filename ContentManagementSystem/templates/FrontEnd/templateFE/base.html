@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>{% block page_title %}National Textile University{% endblock page_title %}</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'templateFE/lib/owlcarousel/assets/owl.carousel.min.css'%}" rel="stylesheet">
+    
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'templateFE/css/style.css'%}" rel="stylesheet">
+    <link href="{% static '/css/my.css '%}" rel="stylesheet">
+    {% comment %} <script src="{% static 'tinymce/js/tinymce/tinymce.min.js'%}"></script> {% endcomment %}
+    {% block extra_css %}
+    {% endblock extra_css %}
+</head>
+
+<body>
+
+     {% block content %} {% endblock %}
+    
+   
+
+
+    
+    <!-- JavaScript Libraries -->
+    <script src="{% static 'templateFE/lib/easing/easing.min.js'%}"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'templateFE/lib/owlcarousel/owl.carousel.min.js'%}"></script>
+    
+    <!-- Contact Javascript File -->
+    <script src="{% static 'templateFE/mail/jqBootstrapValidation.min.js'%}"></script>
+    <script src="{% static 'templateFE/mail/contact.js'%}"></script>
+    
+    <!-- Template Javascript -->
+    <script src="{% static 'templateFE/js/main.js'%}"></script>
+     {% block extra_needed_js %}
+    {% endblock extra_needed_js %}
+    
+</body>
+
+</html>
