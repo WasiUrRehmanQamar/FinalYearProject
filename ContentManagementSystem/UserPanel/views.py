@@ -10,6 +10,17 @@ from django.shortcuts import render, get_object_or_404
 import json
 from MasterUser.models import CMSUser,UserGroup,GroupMenu, Menu,Content, Group
 # Create your views here.
+from django.shortcuts import redirect
+from django.views import View
+
+
+class MasterLoginRequiredMixin:
+    def dispatch(self, request, *args, **kwargs):
+        if "email" not in request.session:
+            return render(request, 'UserPanel/login.html')
+        return super().dispatch(request, *args, **kwargs)
+
+
 class UserLogin(View):
     
     def get(self, request):
@@ -111,13 +122,25 @@ class UserLogut(View):
     
     def get(self, request):
         request.session.clear()
-        return render(request, 'UserPanel/login.html')
+        response = HttpResponse(render(request, 'UserPanel/login.html'))
+        response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        response['Pragma'] = 'no-cache'
+        response['Expires'] = '0'  # Set cache control headers
+        return response
+    
+        # return render(request, 'UserPanel/login.html')
 
     def post(self, request):
         request.session.clear()
-        return render(request, 'UserPanel/login.html')
+        response = HttpResponse(render(request, 'UserPanel/login.html'))
+        response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        response['Pragma'] = 'no-cache'
+        response['Expires'] = '0'  # Set cache control headers
+        return response
     
-class ManageContent(View):
+class ManageContent(MasterLoginRequiredMixin,View):
     
     def get(self, request,groupName, menuName):
         menuObject= Menu.objects.filter(id=menuName).first()
@@ -132,7 +155,7 @@ class ManageContent(View):
         return redirect('user-panel')
     
 
-class CreateContent(View):
+class CreateContent(MasterLoginRequiredMixin,View):
     
     def get(self, request):
         

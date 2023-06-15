@@ -5,7 +5,15 @@ from django.contrib.auth.models import User
 from MasterUser.models import CMSUser,UserGroup,GroupMenu, Menu,Content, Group, Campus, CampusGroups,FacultyProfiles
 from django.contrib.auth.hashers import make_password
 import random
+from django.shortcuts import redirect
+from django.views import View
 
+
+class MasterLoginRequiredMixin:
+    def dispatch(self, request, *args, **kwargs):
+        if "Masteremail" not in request.session:
+            return redirect('master-login')  # Replace 'master_login' with your actual login URL
+        return super().dispatch(request, *args, **kwargs)
 
 
 class AdminLogin(View):
@@ -40,7 +48,7 @@ class AdminLogin(View):
             
 
 
-class MasterUsers(View):
+class MasterUsers(MasterLoginRequiredMixin,View):
 
     def get(self, request):
         allUsers = CMSUser.objects.all().order_by('-id')
@@ -55,7 +63,7 @@ class MasterUsers(View):
         return render(request, 'MasterPanel/allUsers.html', context)
     
 
-class MasterGroups(View):
+class MasterGroups(MasterLoginRequiredMixin,View):
 
     def get(self, request):
         allGroups = Group.objects.all().order_by('-id')
@@ -67,7 +75,7 @@ class MasterGroups(View):
         
 
     
-class MasterMenus(View):
+class MasterMenus(MasterLoginRequiredMixin,View):
 
     def get(self, request):
         allMenus = Menu.objects.all().order_by('-id')
@@ -80,7 +88,7 @@ class MasterMenus(View):
         
 
     
-class AddNewUser(View):
+class AddNewUser(MasterLoginRequiredMixin,View):
 
     def get(self, request):
         return render(request, 'MasterPanel/addNewUser.html')
@@ -111,7 +119,7 @@ class AddNewUser(View):
             # return render(request, 'MasterPanel/addNewUser.html')
         
 
-class AddNewGroup(View):
+class AddNewGroup(MasterLoginRequiredMixin,View):
 
     def get(self, request):
         return render(request, 'MasterPanel/addNewGroup.html')
@@ -156,7 +164,7 @@ class AddNewGroup(View):
             # return render(request, 'MasterPanel/addNewUser.html')
 
 
-class AddNewMenu(View):
+class AddNewMenu(MasterLoginRequiredMixin,View):
 
     def get(self, request):
         allGroups= Group.objects.all().order_by('-id')
@@ -192,7 +200,7 @@ class AddNewMenu(View):
             # return render(request, 'MasterPanel/addNewUser.html')
 
 
-class MasterMenuGroup(View):
+class MasterMenuGroup(MasterLoginRequiredMixin,View):
 
     def get(self, request):
         groups = Group.objects.all()
@@ -204,7 +212,7 @@ class MasterMenuGroup(View):
         return render(request, 'MasterPanel/allMenuGroup.html', {'group_data': group_data})
         
 
-class AddNewMenuGroup(View):
+class AddNewMenuGroup(MasterLoginRequiredMixin,View):
 
     def get(self, request):
         allGroups= Group.objects.all().order_by('-id')
@@ -253,7 +261,7 @@ class AddNewMenuGroup(View):
             # return render(request, 'MasterPanel/addNewUser.html')
             
 
-class MasterUserGroup(View):
+class MasterUserGroup(MasterLoginRequiredMixin,View):
 
     def get(self, request):
         users = CMSUser.objects.all()
@@ -261,7 +269,7 @@ class MasterUserGroup(View):
         
 
 
-class AddNewUserGroup(View):
+class AddNewUserGroup(MasterLoginRequiredMixin,View):
 
     def get(self, request):
         allGroups= Group.objects.all().order_by('-id')

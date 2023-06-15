@@ -16,25 +16,18 @@
         </button>
         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
           <div class="navbar-nav py-0 flex-wrap">
-            {% comment %} 
-            <a href="index.html" class="nav-item nav-link active">Home</a>
-           {% endcomment %}
-            {% comment %} 
-            {% endcomment %}
+            
             {% for group in context.groups %}
-            <div class="nav-item dropdown">
-              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ group.groupName }}</a>
-              {% for group_menu in group.groupmenu_set.all %}
-              <div class="dropdown-menu rounded-0 m-0">
-                <a href="{% url 'menu_detail' menu_id=group_menu.menuID.id %}" class="dropdown-item">{{ group_menu.menuID.menuName }}</a>
-                {% comment %} <a href="single.html" class="dropdown-item">Blog Detail</a> {% endcomment %}
+              <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ group.groupName }}</a>
+                <div class="dropdown-menu rounded-0 m-0">
+                  {% for group_menu in group.groupmenu_set.all %}
+                    <a href="{% url 'menu_detail' menu_id=group_menu.menuID.id %}" class="dropdown-item">{{ group_menu.menuID.menuName }}</a>
+                  {% endfor %}
+                </div>
               </div>
-              {% endfor %}
-            </div>
             {% endfor %}
           </div>
-          {% comment %} 
-          {% endcomment %}
         </div>
       </nav>
     </div>

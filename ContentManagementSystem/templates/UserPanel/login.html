@@ -39,6 +39,13 @@
 
 {% block extra_needed_js %}
 
-
+{% comment %} <script>
+    if (window.history && window.history.pushState) {
+        window.history.pushState('', '', window.location.href);
+        window.onpopstate = function () {
+            window.history.pushState('', '', window.location.href);
+        };
+    }
+</script> {% endcomment %}
 {% endblock extra_needed_js %}
 
